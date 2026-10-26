@@ -15,7 +15,11 @@ export default {
 	roots: ['<rootDir>/tests'],
 
 	// The glob patterns Jest uses to detect test files
-	testMatch: ['**/__tests__/**/*.js', '**/?(*.)+(spec|test).js'],
+	testMatch: [
+		'**/__tests__/**/*.js',
+		'**/?(*.)+(spec|test).js',
+		'<rootDir>/tests/integration/cli/tui-fallback.test.ts'
+	],
 
 	// Transform files
 	preset: 'ts-jest/presets/default-esm',
