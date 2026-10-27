@@ -6,6 +6,7 @@
 			".changeset",
 			"tasks",
 			"package-lock.json",
+			"tests/temp",
 			"tests/fixture/*.json",
 			"dist"
 		]
