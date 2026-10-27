@@ -32,8 +32,8 @@ export const baseConfig: Partial<UserConfig> = {
 		keepNames: true,
 		splitting: false // Disable code splitting for better stack traces
 	}),
-	// Keep all npm dependencies external (available via node_modules)
-	external: [/^[^@./]/, /^@(?!tm\/)/]
+	// Keep npm dependencies external, but bundle absolute Windows source paths.
+	external: [/^(?![A-Za-z]:[\\/])[^@./]/, /^@(?!tm\/)/]
 };
 
 /**
