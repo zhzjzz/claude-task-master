@@ -13,12 +13,14 @@ export default {
 
 	// A list of paths to directories that Jest should use to search for files in
 	roots: ['<rootDir>/tests'],
+	globalSetup: '<rootDir>/tests/global-setup.js',
 
 	// The glob patterns Jest uses to detect test files
 	testMatch: [
 		'**/__tests__/**/*.js',
 		'**/?(*.)+(spec|test).js',
-		'<rootDir>/tests/integration/cli/tui-fallback.test.ts'
+		'**/__tests__/**/*.ts',
+		'**/?(*.)+(spec|test).ts'
 	],
 
 	// Transform files

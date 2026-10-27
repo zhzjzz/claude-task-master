@@ -211,6 +211,7 @@ jobs:
           NODE_ENV: test
           CI: true
           FORCE_COLOR: 1
+          TASKMASTER_TEST_PREBUILT: '1'
 
       - name: Upload Test Results
         if: always()
