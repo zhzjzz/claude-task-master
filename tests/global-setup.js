@@ -2,7 +2,7 @@ import { execFileSync, execSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-/** Build current CLI sources once before Jest, or use CI's downloaded artifact. */
+/** Build once for selected CLI suites, or use CI's downloaded artifact. */
 export default function setup() {
 	const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 	const cliPath = fileURLToPath(

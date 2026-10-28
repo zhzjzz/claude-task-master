@@ -1,4 +1,4 @@
-export default {
+const config = {
 	// Use Node.js environment for testing
 	testEnvironment: 'node',
 
@@ -13,7 +13,6 @@ export default {
 
 	// A list of paths to directories that Jest should use to search for files in
 	roots: ['<rootDir>/tests'],
-	globalSetup: '<rootDir>/tests/global-setup.js',
 
 	// The glob patterns Jest uses to detect test files
 	testMatch: [
@@ -80,4 +79,45 @@ export default {
 
 	// Setup file
 	setupFilesAfterEnv: ['<rootDir>/tests/setup.js']
+};
+
+const {
+	collectCoverage,
+	coverageDirectory,
+	coverageThreshold,
+	coverageReporters,
+	verbose,
+	...projectConfig
+} = config;
+
+const builtCliTests = [
+	'**/tests/integration/cli/complex-cross-tag-scenarios.test.js',
+	'**/tests/integration/cli/gemini-node20.test.ts',
+	'**/tests/integration/cli/tui-fallback.test.ts',
+	'**/tests/integration/profiles/hamster-rules-distribution.test.js'
+];
+
+export default {
+	collectCoverage,
+	coverageDirectory,
+	coverageThreshold,
+	coverageReporters,
+	verbose,
+	projects: [
+		{
+			...projectConfig,
+			displayName: 'source',
+			testMatch: [
+				...projectConfig.testMatch,
+				...builtCliTests.map((testPath) => `!${testPath}`)
+			]
+		},
+		{
+			...projectConfig,
+			displayName: 'built-cli',
+			testMatch: builtCliTests,
+			// Jest runs this once only when a selected suite needs the built CLI.
+			globalSetup: '<rootDir>/tests/global-setup.js'
+		}
+	]
 };
